@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ConsistentSystem.Common.Models;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsistentSystem.Contracts
 {
@@ -11,7 +7,7 @@ namespace ConsistentSystem.Contracts
     public interface ISensorService
     {
         [OperationContract]
-        double GetLastMeasurement();
+        Measurement GetLastMeasurement();
 
         [OperationContract]
         void Align(double value);

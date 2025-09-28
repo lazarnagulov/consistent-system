@@ -1,14 +1,14 @@
 ﻿using ConsistentSystem.Common;
 using ConsistentSystem.Common.Models;
-using Microsoft.Data.Sqlite;
 using System;
+using System.Data.SQLite;
 
 namespace Sensor
 {
     public class SensorRepository
     {
         private readonly string _dbPath;
-        private string ConnectionString => $"Data Source={_dbPath};Version=3;";
+        private string ConnectionString => $"Data Source={_dbPath};";
         private const string InsertMeasurementSql = "INSERT INTO Measurements (Temperature) VALUES (@temperature)";
         private const string SelectLastMeasurementSql = "SELECT Id, Temperature, Timestamp FROM Measurements ORDER BY Timestamp DESC LIMIT 1";
 
@@ -24,10 +24,10 @@ namespace Sensor
 
         public void InsertMeasurement(double temperature)
         {
-            using (var connection = new SqliteConnection(ConnectionString))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
-                using (var command = new SqliteCommand(InsertMeasurementSql, connection))
+                using (var command = new SQLiteCommand(InsertMeasurementSql, connection))
                 {
                     command.Parameters.AddWithValue("@temperature", temperature);
                     command.ExecuteNonQuery();
@@ -37,10 +37,10 @@ namespace Sensor
 
         public Measurement GetLastMeasurement()
         {
-            using (var connection = new SqliteConnection($"Data Source={_dbPath};Version=3;"))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
-                using (var command = new SqliteCommand(SelectLastMeasurementSql, connection))
+                using (var command = new SQLiteCommand(SelectLastMeasurementSql, connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {

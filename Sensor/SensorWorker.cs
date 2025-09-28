@@ -5,7 +5,6 @@ namespace Sensor
 {
     public class SensorWorker
     {
-
         private readonly SensorRepository _repository;
         private readonly Timer _timer;
         private readonly Random _rand = new Random();
@@ -30,6 +29,7 @@ namespace Sensor
             _timer.Stop();
             double value = 15 + _rand.NextDouble() * 15; 
             _repository.InsertMeasurement(value);
+            Console.WriteLine($"Sensor measured: {value}");
             ScheduleNext();
         }
 
