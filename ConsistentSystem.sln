@@ -5,7 +5,28 @@ VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsistentSystem", "ConsistentSystem\ConsistentSystem.csproj", "{42BC1D60-EDB8-409F-B0C9-ACB99D0206E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sensor", "Sensor\Sensor.csproj", "{5E871824-024D-40E0-B43A-71F84FB89947}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Sensor", "Sensor\", "{4CD7C8CF-672C-4029-8641-9DE0789C101E}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		ProjectReferences = "{42bc1d60-edb8-409f-b0c9-acb99d0206e2}|ConsistentSystem.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_57404"
+		Debug.AspNetCompiler.PhysicalPath = "Sensor\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57404\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_57404"
+		Release.AspNetCompiler.PhysicalPath = "Sensor\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57404\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "57404"
+		SlnRelativePath = "Sensor\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +38,10 @@ Global
 		{42BC1D60-EDB8-409F-B0C9-ACB99D0206E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42BC1D60-EDB8-409F-B0C9-ACB99D0206E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42BC1D60-EDB8-409F-B0C9-ACB99D0206E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E871824-024D-40E0-B43A-71F84FB89947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E871824-024D-40E0-B43A-71F84FB89947}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E871824-024D-40E0-B43A-71F84FB89947}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E871824-024D-40E0-B43A-71F84FB89947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CD7C8CF-672C-4029-8641-9DE0789C101E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD7C8CF-672C-4029-8641-9DE0789C101E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CD7C8CF-672C-4029-8641-9DE0789C101E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD7C8CF-672C-4029-8641-9DE0789C101E}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

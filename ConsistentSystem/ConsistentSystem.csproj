@@ -88,6 +88,8 @@
     <Compile Include="Common\Models\Measurement.cs" />
     <Compile Include="Contracts\ISensorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sensor.Core\SensorRepository.cs" />
+    <Compile Include="Sensor.Core\SensorWorker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

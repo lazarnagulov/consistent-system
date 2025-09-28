@@ -3,7 +3,7 @@ using ConsistentSystem.Common.Models;
 using System;
 using System.Data.SQLite;
 
-namespace Sensor
+namespace ConsistentSystem.Sensor.Core
 {
     public class SensorRepository
     {
