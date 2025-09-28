@@ -20,11 +20,8 @@ namespace Sensor
             _name = name;
         }
 
-        public void Align(double value)
-        {
-            throw new NotImplementedException();
-        }
-
+        public void Align(double value) => _repository.InsertMeasurement(value);
+        
         public Measurement GetLastMeasurement() => _repository.GetLastMeasurement();
 
         public string GetSensorName() => _name;
