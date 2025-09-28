@@ -10,6 +10,10 @@ namespace Sensor
     {
         static void Main(string[] args)
         {
+            string dbPath = $"sensor{args[0]}.db";
+            var repo = new SensorRepository(dbPath);
+            var worker = new SensorWorker(repo);
+            worker.Start();
         }
     }
 }
