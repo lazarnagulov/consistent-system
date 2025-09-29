@@ -11,7 +11,7 @@ namespace ConsistentSystem.Sensor.Core
         private readonly Timer _timer;
         private readonly Random _rand = new Random();
         private readonly object _lock = new object(); 
-        public String Name { get; }
+        public string Name { get; }
 
         public SensorWorker(SensorRepository repository, string name)
         {

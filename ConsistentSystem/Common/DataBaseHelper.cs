@@ -14,7 +14,13 @@ namespace ConsistentSystem.Common
 
         public static void CreateConnection(string dbPath)
         {
-            if (File.Exists(dbPath)) 
+            string directory = Path.GetDirectoryName(dbPath);
+            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            if (File.Exists(dbPath))
                 return;
 
             SQLiteConnection.CreateFile(dbPath);

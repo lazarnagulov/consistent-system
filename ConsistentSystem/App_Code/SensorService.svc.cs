@@ -21,7 +21,7 @@ namespace ConsistentSystem.Sensor
             for (int i = 1; i <= 3; i++)
             {
                 string sensorId = "Sensor" + i;
-                var repository = new SensorRepository(sensorId + ".db");
+                var repository = new SensorRepository(sensorId);
                 var worker = new SensorWorker(repository, sensorId);
                 worker.Start();
                 _sensors[sensorId] = worker;
