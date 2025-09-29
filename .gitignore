@@ -135,3 +135,12 @@ _NCrunch*
 
 # WCF generated files
 Generated\_Proxy\
+
+*.wsdl             # Generated service descriptions (WSDL)
+*.xsd              # Generated schemas
+*.disco            # Discovery documents
+*.map              # Metadata files
+*.svcinfo
+*.svcmap
+*.references
+*.datasource

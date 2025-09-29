@@ -10,12 +10,19 @@ namespace ConsistentSystem.Sensor.Core
         public SensorRepository Repository => _repository; 
         private readonly Timer _timer;
         private readonly Random _rand = new Random();
+        private static readonly Random _globalRand = new Random();
         private readonly object _lock = new object(); 
         public string Name { get; }
 
         public SensorWorker(SensorRepository repository, string name)
         {
             _repository = repository;
+
+            lock (_globalRand)
+            {
+                _rand = new Random(_globalRand.Next());
+            }
+
             _timer = new Timer();
             _timer.Elapsed += GenerateMeasurement;
             Name = name;
@@ -34,7 +41,7 @@ namespace ConsistentSystem.Sensor.Core
             lock (_lock)
             {
                 _timer.Stop();
-                double value = 15 + _rand.NextDouble() * 15;
+                double value = 10 + _rand.NextDouble() * 40;
                 _repository.InsertMeasurement(value);
                 Console.WriteLine($"{Name} measured {value}");
                 ScheduleNext();
