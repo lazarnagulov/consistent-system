@@ -8,7 +8,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Sensor", "Sensor\", "{4CD7C8CF-672C-4029-8641-9DE0789C101E}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
-		ProjectReferences = "{42bc1d60-edb8-409f-b0c9-acb99d0206e2}|ConsistentSystem.dll;"
+		ProjectReferences = "{2b74ec10-4020-4755-a4fa-6dd3364893d8}|Sensor.Core.dll;{42bc1d60-edb8-409f-b0c9-acb99d0206e2}|ConsistentSystem.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_57404"
 		Debug.AspNetCompiler.PhysicalPath = "Sensor\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57404\"
@@ -28,6 +28,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Sensor", "Sensor\", "{4CD7C
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sensor.Core", "Sensor.Core\Sensor.Core.csproj", "{2B74EC10-4020-4755-A4FA-6DD3364893D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{4CD7C8CF-672C-4029-8641-9DE0789C101E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CD7C8CF-672C-4029-8641-9DE0789C101E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CD7C8CF-672C-4029-8641-9DE0789C101E}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{2B74EC10-4020-4755-A4FA-6DD3364893D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B74EC10-4020-4755-A4FA-6DD3364893D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B74EC10-4020-4755-A4FA-6DD3364893D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B74EC10-4020-4755-A4FA-6DD3364893D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

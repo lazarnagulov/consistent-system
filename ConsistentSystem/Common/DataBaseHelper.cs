@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Data.SQLite;
 using System.IO;
 
 namespace ConsistentSystem.Common
@@ -15,7 +16,7 @@ namespace ConsistentSystem.Common
         {
             if (File.Exists(dbPath)) 
                 return;
-           
+
             SQLiteConnection.CreateFile(dbPath);
             using (var connection = GetConnection(dbPath))
             {

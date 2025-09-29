@@ -7,12 +7,12 @@ namespace ConsistentSystem.Contracts
     public interface ISensorService
     {
         [OperationContract]
-        Measurement GetLastMeasurement();
+        Measurement GetLastMeasurement(string sensorId);
 
         [OperationContract]
         void Align(double value);
 
         [OperationContract]
-        string GetSensorName();
+        string GetSensorName(string sensorId);
     }
 }

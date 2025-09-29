@@ -1,7 +1,6 @@
 ﻿using ConsistentSystem.Common.Models;
 using System;
 using System.Timers;
-using System.Xml.Linq;
 
 namespace ConsistentSystem.Sensor.Core
 {

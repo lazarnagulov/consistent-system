@@ -2,6 +2,8 @@
 using ConsistentSystem.Common.Models;
 using System;
 using System.Data.SQLite;
+using System.IO;
+using System.Xml.Linq;
 
 namespace ConsistentSystem.Sensor.Core
 {
@@ -18,8 +20,9 @@ namespace ConsistentSystem.Sensor.Core
             if (string.IsNullOrWhiteSpace(dbPath))
                 throw new ArgumentException("Database path cannot be null or empty.", nameof(dbPath));
 
-            _dbPath = dbPath;
-            DataBaseHelper.CreateConnection(dbPath);
+            string appDataPath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+            _dbPath = Path.Combine(appDataPath, dbPath + ".db");
+            DataBaseHelper.CreateConnection(_dbPath);
         }
 
         public void InsertMeasurement(double temperature)
