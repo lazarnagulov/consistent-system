@@ -20,7 +20,7 @@ namespace Client
 
         public void OnAlignmentCompleted(double alignedValue)
         {
-            Console.WriteLine($"Alignment completed. All sensors now at {alignedValue} °C");
+            Console.WriteLine($"Alignment completed. All sensors now at {alignedValue:F2} °C");
         }
     }
 
@@ -55,6 +55,7 @@ namespace Client
                         .Where(m => Math.Abs(m.Temperature - avg) <= 5)
                         .ToList();
 
+
                     if (validSensors.Count >= 2)
                     {
                         Console.WriteLine($"Valid measurements found (avg={avg:F2} °C):");
@@ -63,7 +64,7 @@ namespace Client
                     }
                     else
                     {
-                        Console.WriteLine("Consensus not reached. Triggering alignment...");
+                        Console.WriteLine($"Consensus not reached (avg={avg:F2} °C). Triggering alignment...");
                         proxy.Align(avg);
                     }
                 }
