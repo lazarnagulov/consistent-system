@@ -32,11 +32,15 @@ namespace ConsistentSystem.Sensor
         {
             lock (_alignLock)
             {
+                var callback = OperationContext.Current.GetCallbackChannel<ISensorCallback>();
+                
                 foreach (var worker in _sensors.Values)
                 {
                     worker.Align(value);
                 }
-                Console.WriteLine("All sensors aligned to: " + value);
+                
+                callback.OnAlignmentCompleted(value);
+
             }
         }
 
