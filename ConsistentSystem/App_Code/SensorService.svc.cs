@@ -22,7 +22,7 @@ namespace ConsistentSystem.Sensor
             {
                 string sensorId = "Sensor" + i;
                 var repository = new SensorRepository(sensorId);
-                var worker = new SensorWorker(repository, sensorId);
+                var worker = new SensorWorker(repository);
                 worker.Start();
                 _sensors[sensorId] = worker;
             }
@@ -33,14 +33,14 @@ namespace ConsistentSystem.Sensor
             lock (_alignLock)
             {
                 var callback = OperationContext.Current.GetCallbackChannel<ISensorCallback>();
-                
+                callback.OnAlignmentStarted();
+
                 foreach (var worker in _sensors.Values)
                 {
                     worker.Align(value);
                 }
                 
                 callback.OnAlignmentCompleted(value);
-
             }
         }
 

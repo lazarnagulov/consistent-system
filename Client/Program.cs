@@ -15,12 +15,12 @@ namespace Client
     {
         public void OnAlignmentStarted()
         {
-            Console.WriteLine("Alignment started. Please wait...");
+            Console.WriteLine($"[{DateTime.Now}] Alignment started. Please wait...");
         }
 
         public void OnAlignmentCompleted(double alignedValue)
         {
-            Console.WriteLine($"Alignment completed. All sensors now at {alignedValue:F2} °C");
+            Console.WriteLine($"[{DateTime.Now}] Alignment completed. All sensors now at {alignedValue:F2} °C");
         }
     }
 
@@ -47,7 +47,7 @@ namespace Client
                     var measurements = sensorIds.Select(id => proxy.GetLastMeasurement(id)).ToList();
 
                     foreach (var m in measurements)
-                        Console.WriteLine($"Sensor: {m.Id}, Temp: {m.Temperature:F2} °C at {m.Timestamp}");
+                        Console.WriteLine($"    Sensor: {m.Id}, Temp: {m.Temperature:F2} °C at {m.Timestamp}");
 
                     double avg = measurements.Average(m => m.Temperature);
 
@@ -55,25 +55,21 @@ namespace Client
                         .Where(m => Math.Abs(m.Temperature - avg) <= 5)
                         .ToList();
 
-
                     if (validSensors.Count >= 2)
                     {
-                        Console.WriteLine($"Valid measurements found (avg={avg:F2} °C):");
-                        foreach (var m in validSensors)
-                            Console.WriteLine($"Sensor: {m.Id}, Temp: {m.Temperature:F2} °C");
+                        Console.WriteLine($"[{DateTime.Now}] Valid measurements found (avg={avg:F2} °C):");
                     }
                     else
                     {
-                        Console.WriteLine($"Consensus not reached (avg={avg:F2} °C). Triggering alignment...");
                         proxy.Align(avg);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
+                    Console.Error.WriteLine($"[{DateTime.Now}] Error: " + ex.Message);
                 }
 
-                Thread.Sleep(12000);
+                Console.ReadKey();
             }
         }
     }
