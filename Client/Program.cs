@@ -64,7 +64,7 @@ namespace Client
                     }
                     else
                     {
-                        Console.WriteLine($"Consensus not reached (avg={avg:F2} °C). Triggering alignment...");
+                        Console.WriteLine($"[{DateTime.Now}] Consensus not reached (avg={avg:F2} °C). Triggering alignment...");
                         proxy.Align(avg);
                     }
                 }

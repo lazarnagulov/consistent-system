@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:65397/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ConsistentSystem.Common.Models" />
+  <xs:element name="GetLastMeasurement">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sensorId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastMeasurementResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ConsistentSystem.Common.Models" minOccurs="0" name="GetLastMeasurementResult" nillable="true" type="q1:Measurement" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Align">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="value" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSensorName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sensorId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSensorNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSensorNameResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnAlignmentStarted">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnAlignmentCompleted">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="alignedValue" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
