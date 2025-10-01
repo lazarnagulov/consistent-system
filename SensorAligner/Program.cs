@@ -38,8 +38,6 @@ namespace SensorAligner
         {
             try
             {
-                Console.WriteLine($"[{DateTime.Now}] Starting automatic alignment...");
-
                 var measurements = sensorIds
                     .Select(id => proxy.GetLastMeasurement(id))
                     .ToList();
@@ -47,12 +45,10 @@ namespace SensorAligner
                 double avg = measurements.Average(m => m.Temperature);
 
                 proxy.Align(avg);
-
-                Console.WriteLine($"[{DateTime.Now}] Alignment done. All sensors set to {avg:F2} °C");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error during alignment: " + ex.Message);
+                Console.Error.WriteLine($"[{DateTime.Now}] Error during alignment: " + ex.Message);
             }
         }
 
@@ -60,12 +56,12 @@ namespace SensorAligner
         {
             public void OnAlignmentCompleted(double alignedValue)
             {
-                Console.WriteLine($"Alignment completed: {alignedValue:F2} °C");
+                Console.WriteLine($"[{DateTime.Now}] Alignment completed: {alignedValue:F2} °C");
             }
 
             public void OnAlignmentStarted()
             {
-                Console.WriteLine("Alignment started...");
+                Console.WriteLine($"[{DateTime.Now}] Alignment started...");
             }
         }
     }
