@@ -7,12 +7,12 @@ using ConsistentSystem.Sensor.Core;
 
 namespace ConsistentSystem.Sensor
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class SensorService : ISensorService
     {
         private readonly Dictionary<string, SensorWorker> _sensors = new Dictionary<string, SensorWorker>();
         private readonly object _alignLock = new object();
-
+        private volatile bool _isAligning = false;
 
         public SensorService()
         {
@@ -32,6 +32,7 @@ namespace ConsistentSystem.Sensor
         {
             lock (_alignLock)
             {
+                _isAligning = true;
                 var callback = OperationContext.Current.GetCallbackChannel<ISensorCallback>();
                 callback.OnAlignmentStarted();
 
@@ -39,13 +40,25 @@ namespace ConsistentSystem.Sensor
                 {
                     worker.Align(value);
                 }
-                
+
+                System.Threading.Thread.Sleep(3000);
+
                 callback.OnAlignmentCompleted(value);
+                _isAligning = false;
             }
         }
 
         public Measurement GetLastMeasurement(string sensorId)
         {
+            if (_isAligning)
+            {
+                return new Measurement
+                {
+                    Id = -1,
+                    Temperature = double.NaN, 
+                    Timestamp = DateTime.UtcNow
+                };
+            }
             SensorWorker worker;
             if (_sensors.TryGetValue(sensorId, out worker))
             {
