@@ -39,30 +39,42 @@ namespace Client
             var sensorIds = new List<string> { "Sensor1", "Sensor2", "Sensor3" };
 
             Console.WriteLine("Client started. Press Ctrl+C to exit.");
+            Console.WriteLine("Press Enter to load measurments.");
+            Console.WriteLine();
 
             while (true)
             {
                 try
                 {
                     var measurements = sensorIds.Select(id => proxy.GetLastMeasurement(id)).ToList();
-
-                    foreach (var m in measurements)
-                        Console.WriteLine($"    Sensor: {m.Id}, Temp: {m.Temperature:F2} °C at {m.Timestamp}");
-
-                    double avg = measurements.Average(m => m.Temperature);
-
-                    var validSensors = measurements
-                        .Where(m => Math.Abs(m.Temperature - avg) <= 5)
-                        .ToList();
-
-                    if (validSensors.Count >= 2)
+                    if (measurements.Any(m => double.IsNaN(m.Temperature)))
                     {
-                        Console.WriteLine($"[{DateTime.Now}] Valid measurements found (avg={avg:F2} °C):");
+                        Console.WriteLine($"    Sensors are aligning; no measurements available.");
                     }
                     else
                     {
-                        proxy.Align(avg);
+
+                        foreach (var m in measurements)
+                        {
+                            Console.WriteLine($"    Sensor: {m.Id}, Temp: {m.Temperature:F2} °C at {m.Timestamp}");
+                        }
+
+                        double avg = measurements.Average(m => m.Temperature);
+
+                        var validSensors = measurements
+                            .Where(m => Math.Abs(m.Temperature - avg) <= 5)
+                            .ToList();
+
+                        if (validSensors.Count >= 2)
+                        {
+                            Console.WriteLine($"[{DateTime.Now}] Valid measurements found (avg={avg:F2} °C):");
+                        }
+                        else
+                        {
+                            proxy.Align(avg);
+                        }
                     }
+                    
                 }
                 catch (Exception ex)
                 {
