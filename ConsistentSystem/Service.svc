@@ -1,0 +1,5 @@
+﻿<%@ ServiceHost 
+    Language="C#" 
+    Debug="true" 
+    Service="ConsistentSystem.Sensor.SensorService" 
+    CodeBehind="SensorService.svc.cs" %>
