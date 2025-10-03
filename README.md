@@ -92,6 +92,7 @@ Configure the WCF Service Project as the startup project.
 - Client Application – queries sensors, validates data, and triggers alignment if required.
 - Automatic Synchronization – every 1 minute, all sensors align their last value to the average.
 </br>
+
 ## Theoretical Background
 
 - Quorum-Based Replication – ensures consistency by requiring agreement from multiple sensors before accepting a value as correct.
